@@ -488,5 +488,16 @@ func createActionConditionKeyMap() actionConditionKeyMap {
 		PutReplicationConfigurationAction: condition.NewKeySet(commonKeys...),
 		RestoreObjectAction:               condition.NewKeySet(commonKeys...),
 		ResetBucketReplicationStateAction: condition.NewKeySet(commonKeys...),
+		NotAction: condition.NewKeySet(commonKeys...),
+		NotAction: condition.NewKeySet(
+			append([]condition.Key{
+				condition.S3VersionID.ToKey(),
+				condition.S3ObjectLockRemainingRetentionDays.ToKey(),
+				condition.S3ObjectLockRetainUntilDate.ToKey(),
+				condition.S3ObjectLockMode.ToKey(),
+				condition.S3ObjectLockLegalHold.ToKey(),
+				condition.RequestObjectTagKeys.ToKey(),
+				condition.RequestObjectTag.ToKey(),
+			}, commonKeys...)...),
 	}
 }
